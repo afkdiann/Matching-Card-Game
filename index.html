@@ -1,145 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Matching Game</title>
-    <style>
-      body{
-        background-color: green;
-      }
-
-      img{
-        margin: 3px 3px 3px 3px;
-        width: 100px;
-        height: auto;
-      }
-    </style>
-    <script>
-      let score = 0;
-      let numOfFlippedCards = 0;
-      let flippedImages = [];
-      let flippedNums = [];
-      let order = {};
-
-      function initialize(){
-        scoreMessage = document.getElementById("scoreout");
-        const cards = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png", "1.png", "2.png", "3.png", "4.png", "5.png", "6.png", "7.png", "8.png"];
-        const nums = [];
-        for(let i = 0; i < cards.length; i++){
-          let rand = Math.floor(Math.random() * 16) + 1;
-          if(isNotInList(nums, rand)){
-            nums.push(rand);
-            order[rand] = cards[i];
-          }else{
-            i--;
-          }
-        }
-      }
-
-      const isNotInList = (list, num) =>{
-        let result = false;
-        for(let i = 0; i < list.length; i++){
-          result = list[i] === num ? true : result;
-        }
-        return result ? false : true;
-      };
-
-      const isInList = (list, num) =>{
-        let result = false;
-        for(let i = 0; i < list.length; i++){
-          result = list[i] === num ? true : result;
-        }
-        return result ? true : false;
-      };
-
-      function changeImage(num){
-        if(numOfFlippedCards >= 2 || isInList(flippedNums, num)){
-          return;
-        }
-        let image = "assets/" + order[num];
-        document.getElementById('img' + num).src = image;
-        numOfFlippedCards++;
-        flippedImages.push(image);
-        flippedNums.push(num);
-        if(flippedImages.length === 2){
-          if(flippedImages[0] === flippedImages[1]){
-            flippedImages = [];
-            flippedNums = [];
-            numOfFlippedCards = 0;
-            changeScore();
-          }else{
-            changeScore();
-            setTimeout(function(){
-              document.getElementById('img' + flippedNums[0]).src = "assets/back.png";
-              document.getElementById('img' + flippedNums[1]).src = "assets/back.png";
-              flippedImages = [];
-              flippedNums = [];
-              numOfFlippedCards = 0;
-            }, 2000);
-          }
-        }else{
-            changeScore();
-            let message = () =>{
-            score++;
-            scoreMessage.innerHTML = "Score: " + score;
-          }
-        }
-      }
-
-      const changeScore = () =>{
-        score++;
-        scoreMessage.innerHTML = "Score: " + score;
-      };
-
-      const reset = () =>{
-        score = 0;
-        numOfFlippedCards = 0;
-        flippedImages = [];
-        flippedNums = [];
-        scoreMessage.innerHTML = `Score: ${score}`;
-        for(let i = 1; i <= 16; i++){
-          document.getElementById("img" + i).src = "assets/back.png";
-        }
-        order = {};
-        initialize();
-      };
-    </script>
+    <title>Matching Card Game</title>
+    <link href="indexStyle.css" rel="stylesheet">
+    <script src="script.js"></script>
   </head>
 
   <body onload="initialize();">
-    <h2><div id="scoreout">Score: 0</div></h2>
-    <span>
+    <div id="scoreOut" class="score">Score: 0</div>
+
+    <span class="row">
       <img id="img1" src="assets/back.png" onclick="changeImage(1);">
       <img id="img2" src="assets/back.png" onclick="changeImage(2);">
       <img id="img3" src="assets/back.png" onclick="changeImage(3);">
       <img id="img4" src="assets/back.png" onclick="changeImage(4);">
     </span>
-    <br />
-
-    <span>
+    <br/>
+    <span class="row">
       <img id="img5" src="assets/back.png" onclick="changeImage(5);">
       <img id="img6" src="assets/back.png" onclick="changeImage(6);">
       <img id="img7" src="assets/back.png" onclick="changeImage(7);">
       <img id="img8" src="assets/back.png" onclick="changeImage(8);">
     </span>
-    <br />
-
-    <span>
+    <br/>
+    <span class="row">
       <img id="img9" src="assets/back.png" onclick="changeImage(9);">
       <img id="img10" src="assets/back.png" onclick="changeImage(10);">
       <img id="img11" src="assets/back.png" onclick="changeImage(11);">
       <img id="img12" src="assets/back.png" onclick="changeImage(12);">
     </span>
-    <br />
-
-    <span>
-      <img id="img13" src="assets/back.png" onclick="changeImage(13);">
-      <img id="img14" src="assets/back.png" onclick="changeImage(14);">
-      <img id="img15" src="assets/back.png" onclick="changeImage(15);">
-      <img id="img16" src="assets/back.png" onclick="changeImage(16);">
+    <br/>
+    <span class="row">
+      <img id="img13" src="assets/back.png" onclick="changeImage(13)";>
+      <img id="img14" src="assets/back.png" onclick="changeImage(14)";>
+      <img id="img15" src="assets/back.png" onclick="changeImage(15)";>
+      <img id="img16" src="assets/back.png" onclick="changeImage(16)";>
     </span>
-    <br />
-
-    <br />
+    <br/>
+      
     <button onclick="reset();">Reset</button>
+    <br/>
+    <a href="help.html"><button>Help</button></a> 
   </body>
 </html>
