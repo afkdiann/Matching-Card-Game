@@ -1,0 +1,39 @@
+body{
+    background-image: url("assets/background.png");
+    font-family: monospace;
+}
+
+.score{
+    font-size: 24px;
+    font-weight: bold;
+    font-style: oblique;
+    text-align: center;
+    color: bisque;
+    margin: 15px;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+}
+
+img{
+    margin: 3px 10px 3px 10px;
+    width: 90px;
+    height: auto;
+}
+
+button {
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-size: 16px;
+    font-family: monospace;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+a{
+    text-decoration: none;
+}
